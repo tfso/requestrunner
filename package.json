@@ -1,0 +1,29 @@
+{
+  "name": "requestrunner",
+  "version": "1.0.0",
+  "description": "Request Runner",
+  "main": "index.js",
+  "dependencies": {
+    "async": "^2.0.0-rc.1",
+    "extend": "^3.0.0",
+    "request": "^2.69.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tfso/requestrunner.git"
+  },
+  "keywords": [
+    "request",
+    "test"
+  ],
+  "author": "Richard Bjorntvedt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tfso/requestrunner/issues"
+  },
+  "homepage": "https://github.com/tfso/requestrunner#readme"
+}
