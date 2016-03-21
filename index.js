@@ -14,7 +14,8 @@ RequestRunner.prototype = {
         this.actions = config.actions.map((action)=> extend(true, {}, defaults, action));
     },
     run: function (options, callback) {
-        var start = new Date();
+        var start = new Date(),
+            callback = arguments[argument.length - 1];
         async.map(this.actions, this.runner.bind(this), (err, results)=> {
             var errors = results.filter((action) =>!!action.err),
                 result = {actions: results, elapsedTime: new Date() - start, failedActionsCount: errors.length};
