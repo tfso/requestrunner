@@ -1,0 +1,22 @@
+{
+  "defaults": {
+    "headers": {
+      "accept": "application/json",
+      "user-agent": "node/requestrunner"
+    },
+    "method": "GET",
+    "expectStatusCode": 200,
+    "times": 1,
+    "timeout": 5000
+  },
+  "actions": [
+    {
+      "text": "GitHub",
+      "url": "https://api.github.com"
+    },
+    {
+      "url": "https://api.github.com/doesnotexists",
+      "expectStatusCode": 404
+    }
+  ]
+}

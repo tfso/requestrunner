@@ -8,9 +8,12 @@
     "extend": "^3.0.0",
     "request": "^2.69.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^2.4.5"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/*.test.js"
   },
   "repository": {
     "type": "git",
