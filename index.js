@@ -17,6 +17,8 @@ RequestRunner.prototype = {
         return this;
     },
     add: function(actions, defaults) {
+        if ( !action)
+            return this;
         if ( !Array.isArray(actions))
             actions = [actions];
         var defaults = defaults || this.defaults;
@@ -24,7 +26,8 @@ RequestRunner.prototype = {
         return this;
     },
     clear: function() {
-      this.actions = [];
+        this.actions = [];
+        return this;
     },
     loadActions: function (configFile, options) {
         var config = JSON.parse(fs.readFileSync(configFile, options));
