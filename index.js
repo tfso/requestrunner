@@ -4,9 +4,10 @@ var request = require('request');
 var extend = require('extend');
 
 var RequestRunner = function (configFile, options) {
-    if ( configFile)
+    if ( typeof configFile == 'string')
         this.loadActions(configFile, options || 'utf8');
-
+    else
+        this.add(arguments);
 };
 
 
