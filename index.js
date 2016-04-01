@@ -20,8 +20,11 @@ RequestRunner.prototype = {
         if ( !Array.isArray(actions))
             actions = [actions];
         var defaults = defaults || this.defaults;
-        this.actions = actions.map((action)=> extend(true, {}, defaults, action));
+        this.actions = (this.actions || []).concat(actions.map((action)=> extend(true, {}, defaults, action)));
         return this;
+    },
+    clear: function() {
+      this.actions = [];
     },
     loadActions: function (configFile, options) {
         var config = JSON.parse(fs.readFileSync(configFile, options));
