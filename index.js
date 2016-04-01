@@ -12,7 +12,7 @@ var RequestRunner = function (configFile, options) {
 
 
 RequestRunner.prototype = {
-    defaults: function(defaults) {
+    setDefaults: function(defaults) {
         this.defaults = defaults;
         return this;
     },
@@ -25,7 +25,7 @@ RequestRunner.prototype = {
     },
     loadActions: function (configFile, options) {
         var config = JSON.parse(fs.readFileSync(configFile, options));
-        return me.defaults(config.defaults)
+        return this.setDefaults(config.defaults)
             .add(config.actions);
 
     },
