@@ -20,7 +20,7 @@ RequestRunner.prototype = {
         if ( !Array.isArray(actions))
             actions = [actions];
         var defaults = defaults || this.defaults;
-        this.actions = actions.actions.map((action)=> extend(true, {}, defaults, action));
+        this.actions = actions.map((action)=> extend(true, {}, defaults, action));
         return this;
     },
     loadActions: function (configFile, options) {
