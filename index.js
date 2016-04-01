@@ -7,7 +7,7 @@ var RequestRunner = function (configFile, options) {
     if ( typeof configFile == 'string')
         this.loadActions(configFile, options || 'utf8');
     else
-        this.add(arguments);
+        this.add(configFile, options);
 };
 
 
