@@ -17,7 +17,7 @@ RequestRunner.prototype = {
         return this;
     },
     add: function(actions, defaults) {
-        if ( !action)
+        if ( !actions)
             return this;
         if ( !Array.isArray(actions))
             actions = [actions];
