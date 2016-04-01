@@ -3,11 +3,11 @@ var async = require('async');
 var request = require('request');
 var extend = require('extend');
 
-var RequestRunner = function (configFile, options) {
-    if ( typeof configFile == 'string')
-        this.loadActions(configFile, options || 'utf8');
+var RequestRunner = function (fileOrActions, fileOptionsOrActionDefaults) {
+    if ( typeof fileOrActions == 'string')
+        this.loadActions(fileOrActions, fileOptionsOrActionDefaults || 'utf8');
     else
-        this.add(configFile, options);
+        this.add(fileOrActions, fileOptionsOrActionDefaults);
 };
 
 
