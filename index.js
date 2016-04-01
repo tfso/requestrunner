@@ -4,14 +4,30 @@ var request = require('request');
 var extend = require('extend');
 
 var RequestRunner = function (configFile, options) {
-    this.loadActions(configFile, options || 'utf8');
+    if ( configFile)
+        this.loadActions(configFile, options || 'utf8');
+
 };
 
+
+
 RequestRunner.prototype = {
+    defaults: function(defaults) {
+        this.defaults = defaults;
+        return this;
+    },
+    add: function(actions, defaults) {
+        if ( !Array.isArray(actions))
+            actions = [actions];
+        var defaults = defaults || this.defaults;
+        this.actions = actions.actions.map((action)=> extend(true, {}, defaults, action));
+        return this;
+    },
     loadActions: function (configFile, options) {
-        var config = JSON.parse(fs.readFileSync(configFile, options)),
-            defaults = config.defaults;
-        this.actions = config.actions.map((action)=> extend(true, {}, defaults, action));
+        var config = JSON.parse(fs.readFileSync(configFile, options));
+        return me.defaults(config.defaults)
+            .add(config.actions);
+
     },
     run: function (options, callback) {
         var start = new Date(),
@@ -24,6 +40,7 @@ RequestRunner.prototype = {
             else
                 callback(err, result);
         });
+        return this;
     },
 
     runner: function (action, callback) {
