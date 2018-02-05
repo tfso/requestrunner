@@ -8,6 +8,8 @@ var RequestRunner = function (fileOrActions, fileOptionsOrActionDefaults) {
         this.loadActions(fileOrActions, fileOptionsOrActionDefaults || 'utf8');
     else
         this.add(fileOrActions, fileOptionsOrActionDefaults);
+
+    this.asyncLimit = fileOptionsOrActionDefaults && fileOptionsOrActionDefaults.limit ? fileOptionsOrActionDefaults.limit : 20;
 };
 
 
@@ -38,8 +40,9 @@ RequestRunner.prototype = {
     },
     run: function (options, callback) {
         var start = new Date(),
-            callback = arguments[arguments.length - 1];
-        async.map(this.actions, this.runner.bind(this), (err, results)=> {
+            callback = arguments[arguments.length - 1],
+            limit = this.asyncLimit;
+        async.mapLimit(this.actions, limit, this.runner.bind(this), (err, results)=> {
             var errors = results.filter((action) =>!!action.err),
                 result = {actions: results, elapsedTime: new Date() - start, failedActionsCount: errors.length};
             if (options && !!options.asError)
